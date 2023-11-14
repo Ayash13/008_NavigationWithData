@@ -29,6 +29,7 @@ import com.example.cobarouting.data.DataSource.flavors
 
 enum class PageManager {
     Home,
+    Customer,
     Rasa,
     Summary
 }
@@ -82,12 +83,23 @@ fun IceTeaApp(
         ) {
             composable(route = PageManager.Home.name) {
                 HomePage(
-                    onNextButtonClicked = { navController.navigate(PageManager.Rasa.name) }
+                    onNextButtonClicked = { navController.navigate(PageManager.Customer.name) }
+                )
+            }
+            composable(PageManager.Customer.name){
+                FirstPage(
+                    goToNextPage = {
+                        viewModel.setContent(it)
+                        navController.navigate(PageManager.Rasa.name)
+                    }
                 )
             }
             composable(route = PageManager.Rasa.name) {
                 val context = LocalContext.current
-                FirstPage(
+                SecondPage(
+                    goToNextPage = {
+                        viewModel.setContent(it)
+                    },
                     pilihanRasa = flavors.map { id -> context.resources.getString(id) },
                     onSelectionChanged = { viewModel.setRasa(it) },
                     onConfirmButtonClicked = { viewModel.setJumlah(it) },
@@ -100,7 +112,7 @@ fun IceTeaApp(
                     })
             }
             composable(route = PageManager.Summary.name) {
-                SecondPage(orderUIState = uiState, onCancelButtonClicked = {
+                ThirdPage(orderUIState = uiState, onCancelButtonClicked = {
                     cancelOrderAndNavigateToRasa(
                         navController
                     )
