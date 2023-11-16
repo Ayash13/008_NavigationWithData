@@ -86,20 +86,9 @@ fun IceTeaApp(
                     onNextButtonClicked = { navController.navigate(PageManager.Customer.name) }
                 )
             }
-            composable(PageManager.Customer.name){
-                FirstPage(
-                    goToNextPage = {
-                        viewModel.setContent(it)
-                        navController.navigate(PageManager.Rasa.name)
-                    }
-                )
-            }
             composable(route = PageManager.Rasa.name) {
                 val context = LocalContext.current
                 SecondPage(
-                    goToNextPage = {
-                        viewModel.setContent(it)
-                    },
                     pilihanRasa = flavors.map { id -> context.resources.getString(id) },
                     onSelectionChanged = { viewModel.setRasa(it) },
                     onConfirmButtonClicked = { viewModel.setJumlah(it) },

@@ -37,12 +37,4 @@ class OrderViewModel : ViewModel(){
         return NumberFormat.getNumberInstance().format(kalkulasiHarga)
     }
 
-    fun setContent(listData : MutableList<String>) {
-        _stateUI.value = OrderUIState(
-            nama = listData[0],
-            alamat = listData[1],
-            umur = listData[2],
-            pekerjaan = listData[3]
-        )
-    }
 }
