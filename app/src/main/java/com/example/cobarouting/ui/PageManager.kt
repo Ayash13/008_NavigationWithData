@@ -86,6 +86,11 @@ fun IceTeaApp(
                     onNextButtonClicked = { navController.navigate(PageManager.Customer.name) }
                 )
             }
+            composable(PageManager.Customer.name){
+                FirstPage(
+
+                )
+            }
             composable(route = PageManager.Rasa.name) {
                 val context = LocalContext.current
                 SecondPage(
