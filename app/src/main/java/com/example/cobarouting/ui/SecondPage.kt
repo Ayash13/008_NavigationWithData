@@ -38,6 +38,7 @@ fun SecondPage(
     onNextButtonClicked: () -> Unit,
     onCancelButtonClicked: () -> Unit,
     modifier: Modifier = Modifier,
+    goToNextPage: (MutableList<String>) -> Unit,
 ) {
     var selectedFlavor by rememberSaveable {
         mutableStateOf("")
