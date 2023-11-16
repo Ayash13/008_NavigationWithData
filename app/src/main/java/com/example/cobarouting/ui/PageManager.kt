@@ -88,7 +88,10 @@ fun IceTeaApp(
             }
             composable(PageManager.Customer.name){
                 FirstPage(
-
+                    goToNextPage = {
+                        viewModel.setContent(it)
+                        navController.navigate(PageManager.Rasa.name)
+                    }
                 )
             }
             composable(route = PageManager.Rasa.name) {
