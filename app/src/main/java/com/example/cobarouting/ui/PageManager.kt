@@ -89,6 +89,9 @@ fun IceTeaApp(
             composable(route = PageManager.Rasa.name) {
                 val context = LocalContext.current
                 SecondPage(
+                    goToNextPage = {
+                        viewModel.setContent(it)
+                    },
                     pilihanRasa = flavors.map { id -> context.resources.getString(id) },
                     onSelectionChanged = { viewModel.setRasa(it) },
                     onConfirmButtonClicked = { viewModel.setJumlah(it) },
